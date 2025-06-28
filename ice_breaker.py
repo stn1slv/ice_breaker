@@ -3,6 +3,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
 from langchain_ollama import ChatOllama
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 load_dotenv()
 
@@ -17,7 +18,7 @@ Musk's actions and expressed views have made him a polarizing figure. He has bee
 """
 
 if __name__ == "__main__":
-    print("Hello langchain!")
+    # print("Hello langchain!")
 
     summary_template = """
     given the information {information} about a person from I want you to create:
@@ -29,7 +30,8 @@ if __name__ == "__main__":
     )
 
     # llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
-    llm = ChatOllama(model="llama3.2")
+    # llm = ChatOllama(model="llama3.2")
+    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
     chain = summary_prompt_template | llm | StrOutputParser()
 
